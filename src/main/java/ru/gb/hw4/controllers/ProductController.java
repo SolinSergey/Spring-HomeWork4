@@ -1,15 +1,12 @@
 package ru.gb.hw4.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.hw4.entites.Product;
-import ru.gb.hw4.entites.Products;
 import ru.gb.hw4.service.ProductService;
 
-import java.util.Arrays;
 
 @Controller
 @RequestMapping("/product")
@@ -27,22 +24,18 @@ public class ProductController {
         for (int i = 0; i < productService.getSizeProductsList(); i++) {
             products[i] = productService.getProductById(i);
         }
-       // Products listProducts = new Products();
-        //listProducts.setProducts(products);
         model.addAttribute("products", products);
-        System.out.println(Arrays.toString(products));
         return "products";
     }
 
     @GetMapping(path = "/byid")
     public String productById(Model model, @RequestParam int id) {
         Product product = productService.getProductById(id);
-        System.out.println(id);
         model.addAttribute("result",product);
         return "byid";
     }
-/*
-    @RequestMapping("/showForm")
+
+    @GetMapping("/showForm")
     public String showSimpleForm(Model model) {
         Product product = new Product();
         product.setId(-1);
@@ -52,13 +45,13 @@ public class ProductController {
         return "productform";
     }
 
-    @RequestMapping("/processForm")
-    public String processForm(@ModelAttribute("product") Product product) {
+    @PostMapping("/processForm")
+    public String processForm(@ModelAttribute Product product,Model model) {
         productService.addProductToRepository(product);
-        product.setId(productService.getSizeProductsList());
+        model.addAttribute("product",product);
         return "formresult";
     }
-*/
+
 }
 
 
