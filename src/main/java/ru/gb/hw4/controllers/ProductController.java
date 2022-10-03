@@ -27,19 +27,21 @@ public class ProductController {
         for (int i = 0; i < productService.getSizeProductsList(); i++) {
             products[i] = productService.getProductById(i);
         }
-        Products listProducts = new Products();
-        listProducts.setProducts(products);
-        model.addAttribute("products", listProducts);
+       // Products listProducts = new Products();
+        //listProducts.setProducts(products);
+        model.addAttribute("products", products);
         System.out.println(Arrays.toString(products));
         return "products";
     }
-/*
-    @RequestMapping(path = "/byid", method = RequestMethod.GET)
-    public Product productById(Model model, @RequestParam int id) {
-        Product product = productService.getProductById(id);
-        return product;
-    }
 
+    @GetMapping(path = "/byid")
+    public String productById(Model model, @RequestParam int id) {
+        Product product = productService.getProductById(id);
+        System.out.println(id);
+        model.addAttribute("result",product);
+        return "byid";
+    }
+/*
     @RequestMapping("/showForm")
     public String showSimpleForm(Model model) {
         Product product = new Product();
