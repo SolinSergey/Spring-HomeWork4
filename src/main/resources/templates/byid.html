@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Поиск продукта по заданному id</title>
 </head>
 <body>
+<h3>
 <table>
     <tr th:each="res:${result}">
-        <td th:text="${res.id}"></td><td th:text="${res.title}"></td><td th:text="${res.cost}"></td>
+        <td>id=<th th:text="${res.id}"></th></td><td th:text="${res.title}"></td><td th:text="${res.cost}"></td>
     </tr>
 </table>
+</h3>
 </body>
 </html>

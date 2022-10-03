@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.gb.hw4.entites.Product;
 import ru.gb.hw4.service.ProductService;
 
-
 @Controller
 @RequestMapping("/product")
 public class ProductController {
@@ -31,7 +30,7 @@ public class ProductController {
     @GetMapping(path = "/byid")
     public String productById(Model model, @RequestParam int id) {
         Product product = productService.getProductById(id);
-        model.addAttribute("result",product);
+        model.addAttribute("result", product);
         return "byid";
     }
 
@@ -46,9 +45,9 @@ public class ProductController {
     }
 
     @PostMapping("/processForm")
-    public String processForm(@ModelAttribute Product product,Model model) {
+    public String processForm(@ModelAttribute Product product, Model model) {
         productService.addProductToRepository(product);
-        model.addAttribute("product",product);
+        model.addAttribute("product", product);
         return "formresult";
     }
 
